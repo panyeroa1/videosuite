@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eburon Media Suite v2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --color-bg: #F6F7FB;
+        --color-surface: #FFFFFF;
+        --color-surface-alt: #F2F3FB;
+        --color-timeline: #F1F5F9;
+        --color-text-main: #111217;
+        --color-text-muted: #555A6E;
+        --color-text-subtle: #9CA3AF;
+        --color-text-disabled: #C4CAD9;
+        --color-primary: #B96BFF;
+        --color-primary-soft: rgba(185,107,255,0.12);
+        --color-secondary: #F59E0B;
+        --color-border-subtle: rgba(0,0,0,0.06);
+        --color-border-strong: rgba(0,0,0,0.12);
+        --color-divider: rgba(0,0,0,0.04);
+        --color-success: #16A34A;
+        --color-warning: #EAB308;
+        --color-error: #DC2626;
+        --color-info: #0284C7;
+        --shadow-soft: 0 18px 40px rgba(15,23,42,0.12);
+      }
+      html.dark {
+        --color-bg: #050509;
+        --color-surface: #111118;
+        --color-surface-alt: #181821;
+        --color-timeline: #050509;
+        --color-text-main: #F9FAFF;
+        --color-text-muted: #A4A7C3;
+        --color-text-subtle: #6F738A;
+        --color-text-disabled: #4A5070;
+        --color-primary: #F4B3FF;
+        --color-primary-soft: rgba(244,179,255,0.16);
+        --color-secondary: #FFB347;
+        --color-border-subtle: rgba(255,255,255,0.06);
+        --color-border-strong: rgba(255,255,255,0.12);
+        --color-divider: rgba(255,255,255,0.04);
+        --color-success: #3CD39F;
+        --color-warning: #FACC6B;
+        --color-error: #FF5C7A;
+        --color-info: #38BDF8;
+        --shadow-soft: 0 24px 60px rgba(0,0,0,0.65);
+      }
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-text-muted);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .select-arrow-bg {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-size: 1.5em 1.5em;
+      }
+    </style>
+    <script>
+      // Set theme on initial load to prevent FOUC
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"SF Pro Display"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+              display: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+            },
+            colors: {
+              'bg': 'var(--color-bg)',
+              'surface': 'var(--color-surface)',
+              'surface-alt': 'var(--color-surface-alt)',
+              'timeline': 'var(--color-timeline)',
+              'text-main': 'var(--color-text-main)',
+              'text-muted': 'var(--color-text-muted)',
+              'text-subtle': 'var(--color-text-subtle)',
+              'text-disabled': 'var(--color-text-disabled)',
+              'primary': 'var(--color-primary)',
+              'primary-soft': 'var(--color-primary-soft)',
+              'secondary': 'var(--color-secondary)',
+              'border-subtle': 'var(--color-border-subtle)',
+              'border-strong': 'var(--color-border-strong)',
+              'divider': 'var(--color-divider)',
+              'success': 'var(--color-success)',
+              'warning': 'var(--color-warning)',
+              'error': 'var(--color-error)',
+              'info': 'var(--color-info)',
+            },
+            borderRadius: {
+              'lg': '18px',
+              'md': '12px',
+            },
+            boxShadow: {
+              'soft': 'var(--shadow-soft)',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-in-out',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: 0 },
+                '100%': { opacity: 1 },
+              },
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.1",
+    "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm"
+  }
+}
+</script>
+</head>
+  <body class="bg-bg text-text-muted">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "Eburon Media Suite v2",
+  "description": "An AI-powered application to generate and edit images, create video slideshows from text prompts with AI-generated narration, and research topics using Google Search and Maps grounding.",
+  "requestFramePermissions": [
+    "geolocation",
+    "microphone"
+  ]
+}
