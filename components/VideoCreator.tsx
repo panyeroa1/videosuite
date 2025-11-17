@@ -112,7 +112,7 @@ export const VideoCreator: React.FC = () => {
                     disabled={disabled}
                     aria-label={`Select ${title} sample`}
                 >
-                    {samples.map(sample => <option key={sample.path} value={sample.path}>{sample.name}</option>)}
+                    {samples.map((sample, index) => <option key={sample.path || `none-${type}-${index}`} value={sample.path}>{sample.name}</option>)}
                 </select>
                 {audioUrl && (
                     <div className="flex items-center gap-3">
@@ -1124,18 +1124,20 @@ export const VideoCreator: React.FC = () => {
                         )}
                     </div>
                     <div className="mt-4">
-                        <audio
-                            key={narrationUrl}
-                            ref={narrationRef}
-                            src={narrationUrl || ''}
-                            onEnded={() => {
-                                setIsPlaying(false);
-                                setIsPlayingNarration(false);
-                            }}
-                            crossOrigin="anonymous"
-                        />
-                        <audio key={bgMusicUrl} ref={bgMusicRef} src={bgMusicUrl || ''} loop crossOrigin="anonymous" />
-                        <audio key={sfxUrl} ref={sfxRef} src={sfxUrl || ''} loop crossOrigin="anonymous" />
+                        {narrationUrl && (
+                            <audio
+                                key={narrationUrl}
+                                ref={narrationRef}
+                                src={narrationUrl}
+                                onEnded={() => {
+                                    setIsPlaying(false);
+                                    setIsPlayingNarration(false);
+                                }}
+                                crossOrigin="anonymous"
+                            />
+                        )}
+                        {bgMusicUrl && <audio key={bgMusicUrl} ref={bgMusicRef} src={bgMusicUrl} loop crossOrigin="anonymous" />}
+                        {sfxUrl && <audio key={sfxUrl} ref={sfxRef} src={sfxUrl} loop crossOrigin="anonymous" />}
                         <div className="flex items-center justify-center gap-4">
                             <button onClick={togglePlay} disabled={!mediaItems.length || !narrationUrl || isLoading} className="p-4 bg-primary rounded-full text-[#050509] disabled:bg-surface-alt disabled:text-text-disabled disabled:cursor-not-allowed hover:bg-opacity-80 transition">
                                 {isPlaying ? <PauseIcon className="w-8 h-8"/> : <PlayIcon className="w-8 h-8"/>}

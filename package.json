@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ffmpeg/core": "^0.12.4",
+    "@ffmpeg/core": "^0.12.10",
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.2",
     "@google/genai": "^1.29.1",
